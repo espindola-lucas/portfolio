@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { BsFillMoonStarsFill, BsDownload, BsLink45Deg } from 'react-icons/bs'
 import { AiFillTwitterCircle, AiFillLinkedin } from 'react-icons/ai'
+import { RiErrorWarningFill } from 'react-icons/ri'
 import profile from '../assets/hombre-saludando.png'
 import code from '../assets/code.png'
 import experiencia from '../assets/experiencia.png'
@@ -12,13 +13,26 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
 
   const [isSmallScreen, setIsSmaillScreen] = useState(false);
+  
   const handleWindowSizeChange = () => {
-    setIsSmaillScreen(window.innerWidth <= 412);
+    setIsSmaillScreen(window.innerWidth <= 600);
   };
   useEffect(() => {
     window.addEventListener('resize', handleWindowSizeChange);
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const [isVerySmall, setIsVerySmall] = useState(false);
+
+  const windowSizeError = () => {
+    setIsVerySmall(window.innerWidth <= 400);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', windowSizeError);
+    return () => {
+      window.removeEventListener('resize', windowSizeError);
     };
   }, []);
 
@@ -40,7 +54,7 @@ export default function Home() {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <main className={`bg-gray-900 px-10 md:px-20 lg:px-40 dark:bg-gray-900`}>
+      <main className={`bg-gray-900 px-10 md:px-20 lg:px-40 dark:bg-gray-900 ${isVerySmall ? 'hidden' : ''}`}>
         <section className='min-h-screen'>
           <nav className={`py-10 mb-12 flex ${isSmallScreen ? 'mb-0 pt-10 pb-0 justify-center' : ''}`}>
             {/* <h1 className={`text-white text-xl dark:text-white ${isSmallScreen <= 412 ? 'hidden' : ''}`}>developedByLucasEspindola</h1> */}
@@ -98,7 +112,7 @@ export default function Home() {
               Eso me incentiva a querer mejorar {/*algo massssss*/}
             </p>
             <h4 className='py-4 text-teal-600'>Skills</h4>
-            <div className={`grid grid-cols-2 w-80 inline-grid ${isSmallScreen ? 'w-60' : ''}`}>
+            <div className={`grid grid-cols-2 w-80 inline-grid ${isSmallScreen ? 'w-48' : ''}`}>
               <p className='text-white py-1 dark:text-white'>HTML</p>
               <p className='text-white py-1 dark:text-white'>CSS</p>
               <p className='text-white py-1 dark:text-white'>JavaScript</p>
@@ -130,6 +144,13 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <section className={`${isVerySmall ? 'block' : 'hidden'}`}>
+          <h1 className='text-center text-2xl font-bold mt-10 mb-10'>Size of screen is very small, switch devices, or better use a computer </h1>
+          <div className='flex justify-center'>
+              <RiErrorWarningFill className='text-9xl text-red-700'/>
+          </div>
+      </section>
     </div>
   )
 }
