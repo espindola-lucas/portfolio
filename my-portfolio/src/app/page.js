@@ -122,7 +122,7 @@ export default function Home() {
               <p className='text-white py-1 dark:text-white'>Docker</p>
               <p className='text-white py-1 dark:text-white'>Laravel</p>
               <p className='text-white py-1 dark:text-white'>Linux</p>
-              <p className='text-white py-1 dark:text-white'>React</p>
+              {/* <p className='text-white py-1 dark:text-white'>React</p> */}
               <p className='text-white py-1 dark:text-white'>Ingl&eacute;s (B1)</p>
             </div>
           </div>
