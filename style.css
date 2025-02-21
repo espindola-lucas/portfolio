@@ -448,7 +448,7 @@ footer .cols .news-col form button i{
 
 @media screen and (max-width: 780px) {
     
-    .navbar button{
+    .navbar{
         display: none;
     }
 
@@ -478,16 +478,17 @@ footer .cols .news-col form button i{
 @media screen and (max-width: 650px) {
     
     .navbar{
-        justify-content: center;
+        /* justify-content: center; */
+        display: none;
     }
 
-    .navbar h2{
+    /* .navbar h2{
         display: none;
     }
 
     .navbar ul li a{
         font-size: 14px;
-    }
+    } */
 
     .main{
         margin-top: 50px;
