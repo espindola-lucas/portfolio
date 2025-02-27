@@ -24,3 +24,12 @@ link2.addEventListener('click', () => {
 link3.addEventListener('click', () => {
     scrollToElement('.column');
 });
+
+function descargarCV(){
+    const link = document.createElement("a");
+    link.href = "assets/cv-espindola.pdf";
+    link.download = "curriculum-espindola.pdf";
+    document.body.appendChild(link)
+    link.click();
+    document.body.removeChild(link);
+}

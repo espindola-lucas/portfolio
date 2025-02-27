@@ -59,10 +59,30 @@ body{
     cursor: pointer;
     border-radius: 6px;
     transition: background-color 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .hire-btn:hover{
     background: #fb8c00;
+    padding-right: 40px;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.hire-btn::after{
+    content: "⬇";
+    font-size: 18px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hire-btn:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .main{
