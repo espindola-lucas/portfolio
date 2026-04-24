@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, Linkedin, Mail, MapPin, ExternalLink, Code2, Layers, Cpu, Cloud, Terminal, ChevronRight, Globe } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, ExternalLink, Code2, Layers, Cpu, Cloud, Terminal, ChevronRight, Globe, Download } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from './lib/utils';
 
@@ -30,6 +30,7 @@ const CONTENT = {
     skills: { en: "Skills", es: "Skills" },
     projects: { en: "Projects", es: "Proyectos" },
     contact: { en: "Contact", es: "Contacto" },
+    cv: { en: "CV", es: "CV" },
     hire: { en: "Hire Me", es: "Contratar" }
   },
   hero: {
@@ -38,7 +39,8 @@ const CONTENT = {
       en: "Software Engineer. Specialized in scalable architectures, cloud systems, and building robust APIs.",
       es: "Software Engineer. Especializado en arquitecturas escalables, sistemas en la nube y el desarrollo de APIs robustas."
     },
-    cta: { en: "View Projects", es: "Ver Proyectos" }
+    cta: { en: "View Projects", es: "Ver Proyectos" },
+    cv: { en: "Download CV", es: "Descargar CV" }
   },
   about: {
     title: { en: "About Me", es: "Sobre mí" },
@@ -168,11 +170,15 @@ const Navbar = ({ lang, setLang }: { lang: Language, setLang: (l: Language) => v
         </motion.div>
         
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
-          {Object.entries(CONTENT.nav).filter(([key]) => key !== 'hire').map(([key, value]) => (
+          {Object.entries(CONTENT.nav).filter(([key]) => !['hire', 'cv'].includes(key)).map(([key, value]) => (
             <a key={key} href={`#${key}`} className="hover:text-white transition-colors cursor-pointer">
               {value[lang]}
             </a>
           ))}
+          <a href="/Lucas_Espindola_Resume.pdf" download className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1">
+            <Download size={14} />
+            <span>{CONTENT.nav.cv[lang]}</span>
+          </a>
         </div>
 
         <div className="flex items-center space-x-4">
