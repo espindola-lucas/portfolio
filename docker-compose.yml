@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_BASE: /
+    ports:
+      - "3100:80"
+    restart: unless-stopped
