@@ -13,6 +13,9 @@
   body {
     @apply bg-[#030712] text-gray-100 font-sans selection:bg-blue-500/30;
   }
+  * {
+    cursor: none !important;
+  }
 }
 
 .glass-card {

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Github, Linkedin, Mail, MapPin, ExternalLink, Code2, Layers, Cpu, Cloud, Terminal, ChevronRight, Globe, Download } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { cn } from './lib/utils';
 
 // --- Types ---
@@ -34,23 +34,23 @@ const CONTENT = {
     hire: { en: "Hire Me", es: "Contratar" }
   },
   hero: {
-    badge: { en: "Available for new challenges", es: "Disponible para nuevos desafíos" },
-    subtitle: { 
-      en: "Software Engineer. Specialized in scalable architectures, cloud systems, and building robust APIs.",
-      es: "Software Engineer. Especializado en arquitecturas escalables, sistemas en la nube y el desarrollo de APIs robustas."
+    badge: { en: "Open to senior & leadership roles", es: "Abierto a roles senior y de liderazgo" },
+    subtitle: {
+      en: "Senior Software Engineer & Tech Lead. Specialized in PHP, Laravel, cloud modernization, and AI-assisted development.",
+      es: "Senior Software Engineer & Tech Lead. Especializado en PHP, Laravel, modernización cloud y desarrollo asistido por IA."
     },
     cta: { en: "View Projects", es: "Ver Proyectos" },
     cv: { en: "Download CV", es: "Descargar CV" }
   },
   about: {
     title: { en: "About Me", es: "Sobre mí" },
-    p1: { 
-      en: "I am a passionate software engineer with over 4 years of experience pushing the boundaries of backend and infrastructure. My focus is on creating systems that aren't just functional, but scalable and maintainable.",
-      es: "Soy un apasionado de la ingeniería de software con más de 4 años desafiando los límites del backend y la infraestructura. Mi enfoque se centra en crear sistemas que no solo funcionen, sino que sean escalables y mantenibles."
+    p1: {
+      en: "I'm a Senior Software Engineer and technical leader with 4+ years building and modernizing production backend systems. I specialize in PHP, Laravel, cloud infrastructure, and containerization — with a track record of leading teams, setting engineering standards, and driving architectural decisions.",
+      es: "Soy Senior Software Engineer y líder técnico con más de 4 años construyendo y modernizando sistemas backend en producción. Me especializo en PHP, Laravel, infraestructura cloud y contenedorización — con historial comprobado de liderar equipos, definir estándares de ingeniería y tomar decisiones arquitectónicas."
     },
     p2: {
-      en: "As a Software Engineer, I enjoy mentoring teams, defining clean architectures, and ensuring every line of code adds real business value. My experience ranges from manual server deployments to distributed orchestration on AWS with Docker.",
-      es: "Como Software Engineer, disfruto mentorizar equipos, definir arquitecturas limpias y asegurar que cada línea de código aporte valor real al negocio. Mi experiencia abarca desde el despliegue manual en servidores locales hasta la orquestación distribuida en AWS con Docker."
+      en: "Beyond shipping features, I focus on the bigger picture: developer workflows, observability, and AI-assisted development practices. I've introduced MCP integrations and AI tooling that meaningfully improved team productivity. I thrive where technical depth and leadership go hand-in-hand.",
+      es: "Más allá de entregar funcionalidades, me enfoco en el panorama general: flujos de trabajo, observabilidad y prácticas de desarrollo asistido por IA. Introduje integraciones MCP y herramientas de IA que mejoraron significativamente la productividad del equipo. Me destaco donde la profundidad técnica y el liderazgo van de la mano."
     },
     location: { en: "Tandil, Buenos Aires, Argentina", es: "Tandil, Buenos Aires, Argentina" },
     expBadge: { en: "4+ Yrs Exp", es: "4+ Años Exp" },
@@ -58,10 +58,10 @@ const CONTENT = {
   },
   contact: {
     title: { en: "Contact", es: "Contacto" },
-    heading: { en: "Ready to scale your architecture?", es: "¿Listo para escalar tu arquitectura?" },
+    heading: { en: "Let's build something that scales.", es: "Construyamos algo que escale." },
     p: {
-      en: "I'm looking to participate in ambitious projects where performance and scalability are the priority.",
-      es: "Estoy buscando participar en proyectos ambiciosos donde la performance y la escalabilidad sean la prioridad."
+      en: "I'm looking for senior and technical leadership roles where architecture, quality, and AI-assisted workflows matter.",
+      es: "Busco roles senior y de liderazgo técnico donde la arquitectura, la calidad y los flujos asistidos por IA sean prioritarios."
     },
     ctaEmail: { en: "Send Email", es: "Enviar Email" }
   }
@@ -69,34 +69,34 @@ const CONTENT = {
 
 const PROJECTS: Project[] = [
   {
-    title: { en: "Cloud Scale API Gateway", es: "Cloud Scale API Gateway" },
+    title: { en: "BudgetCycle", es: "BudgetCycle" },
     description: {
-      en: "Design and implementation of a distributed gateway capable of handling +10k requests per second, integrating JWT authentication and dynamic rate limiting.",
-      es: "Diseño e implementación de un gateway distribuido capaz de manejar +10k peticiones por segundo, integrando autenticación JWT y rate limiting dinámico."
+      en: "Personal finance app built around custom billing periods instead of calendar months. Users define start/end dates, a budget amount, and alert thresholds — income and expenses are tracked against each cycle, ideal for paycheck-based budgeting.",
+      es: "App de finanzas personales construida en torno a períodos de facturación personalizados en lugar de meses calendario. Los usuarios definen fechas, monto presupuestado y umbrales de alerta — ideal para gestionar el gasto entre cobros o vencimientos."
     },
-    tags: ["Node.js", "Redis", "Docker", "AWS"],
+    tags: ["TypeScript", "React", "Node.js", "PostgreSQL"],
     link: "#",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: { en: "EcoSystem Monitoring Tool", es: "EcoSystem Monitoring Tool" },
+    title: { en: "MediPro", es: "MediPro" },
     description: {
-      en: "Real-time observability dashboard for microservices with distributed traceability and preventive alerts based on error patterns.",
-      es: "Dashboard de observabilidad en tiempo real para microservicios con trazabilidad distribuida y alertas preventivas basadas en patrones de error."
+      en: "Healthcare professional management system covering appointments, payments, and medical records — with automated receipt generation that saves hours of admin work. Serving 50+ professionals and handling 100+ daily requests. Fully configurable per practice.",
+      es: "Sistema de gestión para profesionales de la salud con turnos, pagos y fichas médicas. Genera comprobantes automáticamente, ahorrando horas de administración. Utilizado por más de 50 profesionales con más de 100 solicitudes diarias. Configurable por profesional."
     },
-    tags: ["TypeScript", "PostgreSQL", "Grafana", "Go"],
+    tags: ["PHP", "Laravel", "PostgreSQL", "Docker"],
     link: "#",
-    image: "https://images.unsplash.com/photo-1551288049-bbbda536ad37?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: { en: "Laravel Core Engine", es: "Laravel Core Engine" },
+    title: { en: "PriceHunter", es: "PriceHunter" },
     description: {
-      en: "Massive refactoring of a monolithic core towards a service-oriented architecture, reducing response time by 40%.",
-      es: "Refactorización masiva de un core monolítico hacia una arquitectura orientada a servicios, reduciendo el tiempo de respuesta en un 40%."
+      en: "Supermarket price comparison platform. Search any product keyword and instantly see prices ranked cheapest to most expensive across local supermarkets. Supports shared shopping carts, PDF export, and real-time collaboration between multiple users.",
+      es: "Plataforma de comparación de precios de supermercados. Buscá cualquier producto y ve los precios de menor a mayor en los supermercados de tu ciudad. Soporta listas de compras compartidas entre usuarios, exportación a PDF y colaboración en tiempo real."
     },
-    tags: ["PHP", "Laravel", "PostgreSQL", "CI/CD"],
+    tags: ["Node.js", "TypeScript", "PostgreSQL", "Docker"],
     link: "#",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800"
   }
 ];
 
@@ -107,44 +107,86 @@ const EXPERIENCES: Experience[] = [
     period: { en: "2021 - Present", es: "2021 - Presente" },
     description: {
       en: [
-        "Technical leadership of development teams in high-scale government projects.",
-        "Definition of software architecture and Clean Code standards.",
-        "Performance optimization in PostgreSQL databases and robust deployments in AWS."
+        "Led technical decisions and coordinated the engineering team, performing code reviews and establishing development standards.",
+        "Migrated legacy applications to containerized environments using Docker, improving scalability, portability, and deployment consistency.",
+        "Improved observability and deployment workflows; contributed to AI-assisted development practices through MCP integrations and AGENTS.md."
       ],
       es: [
-        "Liderazgo técnico de equipos de desarrollo en proyectos gubernamentales de alta escala.",
-        "Definición de arquitectura de software y estándares de Clean Code.",
-        "Optimización de performance en bases de datos PostgreSQL y despliegues robustos en AWS."
+        "Lideré decisiones técnicas y coordiné al equipo de ingeniería, realizando revisiones de código y estableciendo estándares de desarrollo.",
+        "Migré aplicaciones legadas a entornos containerizados con Docker, mejorando escalabilidad, portabilidad y consistencia de deployments.",
+        "Mejoré la observabilidad y flujos de deployment; contribuí a prácticas de desarrollo asistido por IA mediante integraciones MCP y AGENTS.md."
       ]
     }
   },
   {
     company: "Freelance",
     role: { en: "Software Engineer", es: "Software Engineer" },
-    period: { en: "2021 - Present", es: "2021 - Present" },
+    period: { en: "2021 - Present", es: "2021 - Presente" },
     description: {
       en: [
-        "End-to-end development of custom solutions for international clients.",
-        "Implementation of serverless architectures and containers using Docker.",
-        "Technical consulting for modernizing legacy stacks to modern Node.js/PHP."
+        "Gathered requirements and translated business needs into custom technical solutions end to end.",
+        "Deployed and maintained applications on AWS (EC2, S3, Elastic Beanstalk), managing performance, scalability, and operational stability.",
+        "Delivered iterative enhancements based on business growth and feedback, ensuring continuous improvement."
       ],
       es: [
-        "Desarrollo end-to-end de soluciones personalizadas para clientes internacionales.",
-        "Implementación de arquitecturas serverless y contenedores mediante Docker.",
-        "Consultoría técnica para la modernización de stacks legados a Node.js/PHP moderno."
+        "Relevé requerimientos y traduje necesidades de negocio en soluciones técnicas personalizadas de punta a punta.",
+        "Despleguée y mantuve aplicaciones en AWS (EC2, S3, Elastic Beanstalk), gestionando performance, escalabilidad y estabilidad operacional.",
+        "Entregué mejoras iterativas basadas en el crecimiento del negocio y el feedback, asegurando mejora continua."
       ]
     }
   }
 ];
 
 const SKILLS = [
-  { category: "Backend", icons: <Terminal size={20} />, techs: ["PHP (Laravel)", "Node.js", "Java", "Python"] },
-  { category: "Frontend", icons: <Code2 size={20} />, techs: ["TypeScript", "JavaScript", "React", "Next.js"] },
-  { category: "Infrastructure", icons: <Cloud size={20} />, techs: ["AWS", "Docker", "Nginx", "CI/CD"] },
-  { category: "Databases", icons: <Layers size={20} />, techs: ["PostgreSQL", "Redis", "MySQL", "MongoDB"] }
+  { category: "Backend", icons: <Terminal size={20} />, techs: ["PHP", "Laravel", "Node.js", "Java"] },
+  { category: "Cloud & DevOps", icons: <Cloud size={20} />, techs: ["AWS", "Docker", "Linux", "Bash"] },
+  { category: "Languages", icons: <Code2 size={20} />, techs: ["TypeScript", "JavaScript", "Python", "Kotlin"] },
+  { category: "AI & Tooling", icons: <Cpu size={20} />, techs: ["Claude", "MCP", "LangChain", "GitHub Actions"] }
 ];
 
 // --- Components ---
+
+const CustomCursor = () => {
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    let animFrame: number;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    const animate = () => {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      }
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+      }
+      animFrame = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    animFrame = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(animFrame);
+    };
+  }, []);
+
+  return (
+    <>
+      <div ref={dotRef} className="fixed top-0 left-0 w-2 h-2 bg-blue-500 rounded-full pointer-events-none z-[9999]" />
+      <div ref={ringRef} className="fixed top-0 left-0 w-8 h-8 border border-blue-400/50 rounded-full pointer-events-none z-[9999]" />
+    </>
+  );
+};
 
 const Navbar = ({ lang, setLang }: { lang: Language, setLang: (l: Language) => void }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -175,7 +217,7 @@ const Navbar = ({ lang, setLang }: { lang: Language, setLang: (l: Language) => v
               {value[lang]}
             </a>
           ))}
-          <a href="/Lucas_Espindola_Resume.pdf" download className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1">
+          <a href="/LucasEspindola_Resume.pdf" download className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1">
             <Download size={14} />
             <span>{CONTENT.nav.cv[lang]}</span>
           </a>
@@ -233,6 +275,7 @@ export default function App() {
 
   return (
     <div className="relative overflow-x-hidden min-h-screen">
+      <CustomCursor />
       <Navbar lang={lang} setLang={setLang} />
 
       {/* Hero Section */}
@@ -468,7 +511,7 @@ export default function App() {
       <footer className="border-t border-white/5 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-6">
           <div className="font-mono tracking-tighter">
-            LNE.dev <span className="text-xs opacity-50">© 2024</span>
+            LNE.dev <span className="text-xs opacity-50">© 2026</span>
           </div>
           <div className="flex space-x-8">
              <a href="#" className="hover:text-white transition-colors">Github</a>
